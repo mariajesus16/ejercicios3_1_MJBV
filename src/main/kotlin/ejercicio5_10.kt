@@ -1,23 +1,29 @@
-class Libro(var titulo: String, var autor: String, var numeroPag: Int, var calificacion: Int) {
-
+class Libro(val titulo: String, val autor: String, val numeroPag: Int, var calificacion: Int) {
+    init {
+        require(calificacion in 0..10) { "La calificación debe estar entre el 0 y el 10." }
+    }
 }
 
-class ConjuntoLibros() {
-    var libros: Array<Libro?> = arrayOfNulls(10)
+class ConjuntoLibros(var libros: Array<Libro?> = arrayOfNulls(10)) {
     fun incorporar(l: Libro) {
-        if (libros.size < 10) {
-            libros += l
+        var contador = 0
+        if (contador < 10) {
+            libros.set(contador, l)
+            contador++
         }
+
+
     }
 
     fun eliminarAutor() {}
     fun eliminarTitulo() {
     }
 
-    fun mayorCalificacion(){
+    fun mayorCalificacion() {
 
     }
-    fun menorCalificacion(){}
+
+    fun menorCalificacion() {}
 
 
 }

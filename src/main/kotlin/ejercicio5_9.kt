@@ -16,16 +16,23 @@ class Cuenta(var numCuenta: String, var saldo: Float = 0.0F) {
 }
 
 class Persona(var DNI: String) {
-    var cuentas: Array<Cuenta?> = arrayOf()
+    var cuentas: Array<Cuenta?> = arrayOfNulls(3)
     fun incorporar(c: Cuenta) {
-        if (cuentas.size < 3) {
-            cuentas += c
+        var contador = 0
+        if (contador < 3) {
+            cuentas.set(contador, c)
+            contador++
         }
     }
 
     fun esMorosa(): Boolean {
         for (i in 0..2) {
-            if (this.cuentas[i]!!.saldo < 0) return true
+            try {
+                if (this.cuentas[i]!!.saldo < 0) return true
+            } catch (e: NullPointerException) {
+                return false
+            }
+
         }
         return false
     }
@@ -51,15 +58,16 @@ fun main() {
     cuenta2.realizarPago(750.0F)
     println(cuenta2.saldoDisponible())
 
-    try { if(p.esMorosa() == true) {
+    if (p.esMorosa() == true) {
         println("La persona con dni ${p.DNI} es moroso/a.")
-    }}catch (e:ArrayIndexOutOfBoundsException){1}
+    }
 
-    repeat(80){ print("*")}
+
+    repeat(80) { print("*") }
     println()
 
     println("Se realiza una transferencia de 100€ desde la ${cuenta1.numCuenta} a la ${cuenta2.numCuenta}.")
-    p.transferencia(cuenta1,cuenta2,100.0F)
+    p.transferencia(cuenta1, cuenta2, 100.0F)
     println(cuenta1.saldoDisponible())
     println(cuenta2.saldoDisponible())
 
