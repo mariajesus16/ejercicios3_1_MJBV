@@ -17,8 +17,8 @@ class Cuenta(var numCuenta: String, var saldo: Float = 0.0F) {
 
 class Persona(var DNI: String) {
     var cuentas: Array<Cuenta?> = arrayOfNulls(3)
+    var contador = 0
     fun incorporar(c: Cuenta) {
-        var contador = 0
         if (contador < 3) {
             cuentas.set(contador, c)
             contador++

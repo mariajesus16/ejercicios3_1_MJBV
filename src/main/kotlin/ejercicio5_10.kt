@@ -5,8 +5,8 @@ class Libro(val titulo: String, val autor: String, val numeroPag: Int, var calif
 }
 
 class ConjuntoLibros(var libros: Array<Libro?> = arrayOfNulls(10)) {
+    var contador: Int = 0
     fun incorporar(l: Libro) {
-        var contador = 0
         if (contador < 10) {
             libros.set(contador, l)
             contador++
@@ -29,12 +29,13 @@ class ConjuntoLibros(var libros: Array<Libro?> = arrayOfNulls(10)) {
 }
 
 fun main() {
+    var conjunto = ConjuntoLibros()
     var libro1 = Libro("A dos metros de ti", "Rachael Lippincott", 288, 10)
     var libro2 = Libro("Déjate llevar", "Sarah Dessen", 456, 6)
-    var conjunto = ConjuntoLibros()
+
 
     conjunto.incorporar(libro1)
     conjunto.incorporar(libro2)
-
+    println(2)
 
 }
